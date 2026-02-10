@@ -1,0 +1,9 @@
+{% extends "pages/base.html" %}
+{% block content %}
+  <h2>Welcome to {{ country }}!</h2>
+
+  <p>
+    Let's explore the history, language(s) of {{ country }} on this wonderful day,
+    {% now "l j F Y" %}!
+  </p>
+{% endblock %}

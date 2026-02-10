@@ -1,0 +1,82 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>{{ page_title|default:"Country Site" }}</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="{% static 'favicon.ico' %}?v=2">
+
+
+  <!-- Main stylesheet -->
+  <link rel="stylesheet" href="{% static 'site.css' %}">
+</head>
+<body>
+
+  <!-- ===============================
+       Header / Banner
+       =============================== -->
+  <header class="header">
+    <img
+      class="banner"
+      src="{% static 'images/banner.jpg' %}"
+      alt="Banner image"
+    >
+    <h1 class="site-title">
+      {{ country }}
+    </h1>
+  </header>
+
+  <!-- ===============================
+       Main layout
+       =============================== -->
+  <div class="layout">
+
+    <!-- Left navigation menu -->
+    <nav class="menu">
+      {% for p in menu %}
+        <a href="{% url p.slug %}">
+          {{ p.title }}
+        </a>
+      {% endfor %}
+    </nav>
+
+    <!-- Page content -->
+    <main class="content">
+      <div class="card">
+        {% block content %}
+        {% endblock %}
+      </div>
+    </main>
+
+  </div>
+
+  <!-- ===============================
+       Footer
+       =============================== -->
+  <footer class="footer">
+
+    <div class="footer-left">
+      <img
+        class="logo"
+        src="{% static 'images/logo.png' %}"
+        alt="Site logo"
+      >
+    </div>
+
+    <div class="footer-right">
+      <div>
+        <strong>Alex Merriman</strong> — <strong>30453</strong>
+      </div>
+      <div>
+        Last updated:
+        {{ page_meta.last_updated|date:"l j F Y" }}
+      </div>
+    </div>
+
+  </footer>
+
+</body>
+</html>
+
