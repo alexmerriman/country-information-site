@@ -1,0 +1,29 @@
+{% extends 'pages/base.html' %}
+
+{% block content %}
+<h1>{{ area.area_name }}</h1>
+
+<p>{{ area.area_name }} is a {{ area.area_type|lower }}.</p>
+
+<h2>Attractions in this area</h2>
+
+<ul>
+    {% for attraction in area.attraction_set.all %}
+        <li>
+            <a href="{% url 'attractiondetail' attraction.pk %}">
+                {{ attraction.attraction_name }}
+            </a>
+        </li>
+    {% empty %}
+        <li>No attractions in this area yet.</li>
+    {% endfor %}
+</ul>
+
+<p>
+    <a href="{% url 'areaupdate' area.pk %}">Update Area</a>
+    |
+    <a href="{% url 'areadelete' area.pk %}">Delete Area</a>
+</p>
+
+<p><a href="{% url 'arealist' %}">Back to Areas</a></p>
+{% endblock %}

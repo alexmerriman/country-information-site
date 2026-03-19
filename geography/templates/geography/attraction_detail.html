@@ -1,0 +1,23 @@
+{% extends 'pages/base.html' %}
+
+{% block content %}
+<h1>{{ attraction.attraction_name }}</h1>
+
+<p>Located in {{ attraction.area.area_name }}</p>
+
+<p>{{ attraction.description }}</p>
+
+{% if attraction.image %}
+    <img src="{{ attraction.image.url }}" alt="{{ attraction.attraction_name }}" width="300">
+{% else %}
+    <p>No image uploaded yet.</p>
+{% endif %}
+
+<p>
+    <a href="{% url 'attractionupdate' attraction.pk %}">Update Attraction</a>
+    |
+    <a href="{% url 'attractiondelete' attraction.pk %}">Delete Attraction</a>
+</p>
+
+<p><a href="{% url 'attractionlist' %}">Back to Attractions</a></p>
+{% endblock %}

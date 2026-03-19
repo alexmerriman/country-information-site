@@ -1,0 +1,13 @@
+{% extends 'pages/base.html' %}
+
+{% block content %}
+<h1>Delete Attraction</h1>
+
+<form method="post">
+    {% csrf_token %}
+    <p>Are you sure you want to delete "{{ attraction.attraction_name }}"?</p>
+    <button type="submit">Confirm Delete</button>
+</form>
+
+<p><a href="{% url 'attractionlist' %}">Back to Attractions</a></p>
+{% endblock %}

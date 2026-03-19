@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Page
+from geography.models import Area
 
 COUNTRY_NAME = "North Korea (Democratic People's Republic of Korea)"
 
@@ -9,11 +10,14 @@ def menu_pages():
 
 def home(request):
     page = get_object_or_404(Page, slug="home")
+    areas = Area.objects.prefetch_related("attraction_set").all()
+
     return render(request, "pages/home.html", {
         "country": COUNTRY_NAME,
         "page_title": "Home",
         "page_meta": page,
         "menu": menu_pages(),
+        "areas": areas,
     })
 
 def history(request):

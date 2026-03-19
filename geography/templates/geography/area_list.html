@@ -1,0 +1,25 @@
+{% extends 'pages/base.html' %}
+
+{% block content %}
+<h1>Areas</h1>
+
+<p><a href="{% url 'areacreate' %}">Create new area</a></p>
+
+<table border="1">
+    <tr>
+        <th>Area</th>
+        <th>Actions</th>
+    </tr>
+
+    {% for area in area_list %}
+    <tr>
+        <td>{{ area.area_name }} ({{ area.area_type|title }})</td>
+        <td>
+            <a href="{% url 'areadetail' area.pk %}">View</a> |
+            <a href="{% url 'areaupdate' area.pk %}">Update</a> |
+            <a href="{% url 'areadelete' area.pk %}">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

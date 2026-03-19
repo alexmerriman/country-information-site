@@ -2,21 +2,14 @@
 
 {% block content %}
 
-<h1>Welcome to {{ country }}</h1>
-
-<p>
-Let's explore the history, language(s) of {{ country }} on this wonderful day!
-</p>
-
-<h2>Geography Overview</h2>
+<h1>{{ country }} Geography</h1>
 
 {% for area in areas %}
-    <h3>
+    <h2>
         <a href="{% url 'areadetail' area.pk %}">
-            {{ area.area_name }}
+            {{ area.area_name }} ({{ area.area_type|title }})
         </a>
-        ({{ area.area_type|title }})
-    </h3>
+    </h2>
 
     <ul>
         {% for attraction in area.attraction_set.all %}
@@ -29,8 +22,6 @@ Let's explore the history, language(s) of {{ country }} on this wonderful day!
             <li>No attractions added yet.</li>
         {% endfor %}
     </ul>
-
-    <br>
 {% endfor %}
 
 {% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'pages/base.html' %}
+
+{% block content %}
+<h1>Attractions</h1>
+
+<p><a href="{% url 'attractioncreate' %}">Create new attraction</a></p>
+
+<table border="1">
+    <tr>
+        <th>Attraction</th>
+        <th>Actions</th>
+    </tr>
+
+    {% for attraction in attraction_list %}
+    <tr>
+        <td>{{ attraction.attraction_name }} ({{ attraction.area.area_name }})</td>
+        <td>
+            <a href="{% url 'attractiondetail' attraction.pk %}">View</a> |
+            <a href="{% url 'attractionupdate' attraction.pk %}">Update</a> |
+            <a href="{% url 'attractiondelete' attraction.pk %}">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
