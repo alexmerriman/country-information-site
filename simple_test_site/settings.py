@@ -1,3 +1,4 @@
+import os
 """
 Django settings for simple_test_site project.
 
@@ -20,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-kmz9+4x05tns4!ry-y+^d7e&(yk9y07ou(9r(^hzh^ky7al&=j'
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "dev-only-secret-key")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
